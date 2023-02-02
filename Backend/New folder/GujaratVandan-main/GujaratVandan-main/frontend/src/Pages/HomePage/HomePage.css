@@ -1,0 +1,43 @@
+.HomePage{
+    /* border: red 1px solid ; */
+    /* height: 200vh;
+     */
+    /* padding-left: 10%;
+    padding-right: 10%; */
+}
+
+.boundry{
+    /* border: green 1px solid ; */
+    /* padding-left: 10%;
+    padding-right: 10%; */
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 89%;
+    display: flex;
+    
+}
+
+.LeftSection{
+    flex:1s;
+    flex-basis: 20%;
+    /* border:magenta 1px solid; */
+    height: 99%;
+
+}
+.RightSection{
+    flex:1s;
+    flex-basis: 20%;
+    /* border:blue 1px solid; */
+    height: 100%;
+    margin-left: 2%;
+}
+.MiddleSection{
+    flex-basis: 60%;
+    flex:1;
+    /* border:white 1px solid; */
+    flex-wrap: wrap;
+}
+.Fun{
+    width:60%
+}

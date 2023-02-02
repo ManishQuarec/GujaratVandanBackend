@@ -1,0 +1,83 @@
+.head {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid black;
+}
+
+.Main-Img {
+  width: 100%;
+  position: relative;
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  /* padding: 0px 70px; */
+}
+
+.Img-1 {
+  width: 44%;
+  position: absolute;
+  height: 295px;
+  /* width: 400px; */
+  /* background-image: url("../../Image/HomePageIMage/raspred1.png"); */
+  box-shadow: inset 0px 0px 50px 0px #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid;
+  z-index: 0;
+  margin-left: 5%;
+  
+
+}
+.Img-2 {
+  width: 44%;
+  position: absolute;
+  height: 295px;
+  /* width: 400px; */
+  float: right;
+  margin-left: 50%;
+  /* background-image: url("../../Image/HomePageIMage/raspred1.png"); */
+  box-shadow: inset 0px 0px 50px 0px #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid;
+  z-index: 0;
+  
+}
+
+.Text-bottem1{
+  z-index:1;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  position: relative;
+  width: 43.5%;
+  bottom: -231px;
+  opacity: 63%;
+  margin-left: 5.2%;
+ 
+ 
+    /* padding: 15.10rem 0rem 0rem 1rem; */
+
+}
+.Text-bottem2{
+  z-index:1;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  
+  width: 43.5%;
+  position: relative;
+  height: 4rem;
+bottom: -231px;
+opacity: 63%;
+margin-left: 1.5%;
+    /* padding: 15.10rem 0rem 0rem 1rem; */
+
+}
+
+.Bind {
+  /* border: 1px solid red; */
+  height: 30%;
+}

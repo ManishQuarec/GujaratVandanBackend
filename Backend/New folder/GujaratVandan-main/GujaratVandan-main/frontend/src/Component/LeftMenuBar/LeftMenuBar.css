@@ -1,0 +1,33 @@
+.category-section{
+    Width: 223px;
+    height: 750px;
+    background: linear-gradient(#E74B4B,#001AFF);
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.category{
+    Width: 199px;
+    height: 52px;
+    background-color: white;
+    margin-bottom: 10px;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 6px 0 6px 15px;
+    display: flex;
+    align-items: center;
+}
+.category FontAwesomeIcon{
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+.LeftSection{
+    
+}

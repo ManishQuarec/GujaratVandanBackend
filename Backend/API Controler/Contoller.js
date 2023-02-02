@@ -18,6 +18,9 @@ router.post('/AddNewsDetail', Writing.AddNewsDetail);
 router.post("/allNews", Reading.allNews);
 router.post("/allNews/allBreakingNews", Reading.allNews,Reading.allBreakingNews);
 router.post("/allNewsData", Reading.allNewsData);
+router.get('/newsPaper', Reading.newsPaper);
+router.get('/downloads', Reading.downloads);
+router.post('/allNewsDataId', Reading.allNewsDataId);
 
 
 

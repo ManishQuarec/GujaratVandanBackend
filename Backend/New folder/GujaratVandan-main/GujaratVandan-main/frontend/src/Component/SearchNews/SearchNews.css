@@ -1,0 +1,19 @@
+.Searchbar {
+  display: inline;
+  border-bottom: 2px solid rgb(0, 0, 0);
+  padding-bottom: 1.5rem;
+}
+.Searchbar input {
+  padding: 10px 286px 5px 20px;
+  border-radius: 50px;
+  border: none;
+  font-size: 25px;
+}
+.Searchbarbtn {
+  background-color: red;
+  font-size: 30px;
+  padding: 5px 40px;
+  border-radius: 50px;
+  border: none;
+  margin: 0px 0px 0px 5px;
+}

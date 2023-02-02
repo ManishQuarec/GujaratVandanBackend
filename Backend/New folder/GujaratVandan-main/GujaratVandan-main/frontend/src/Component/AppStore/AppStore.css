@@ -1,0 +1,138 @@
+.download-app{
+    width: 13.938rem;
+    height: 17.5rem;
+    margin-top: 1.5rem;
+    background-color: white;
+    font-weight: bolder;
+    color: #808080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.google-play{
+    position: relative;
+}
+
+.play-store{
+    position: relative;
+    top: 0.313rem;
+    left: 0.563rem;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.google-play > div{
+    display: inline-block;
+    margin-left: 0.625rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.appstore{
+    position: relative;
+    top: 0rem;
+    left: 0.5rem;
+    font-size: 2.188rem;
+    color: white;
+}
+
+.app-store > div{
+    display: inline-block;
+    margin-left: 0.625rem;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.social-link ul{
+    position: relative;
+    display: flex;
+    margin-top: 0.625rem;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.social-link ul li{
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    margin: 0 0.625rem;
+}
+.social-link ul li a{
+    text-decoration: none;
+    color: #808080;
+    font-size: 1.563rem;
+}
+
+ul li::before{
+    font-family: "FontAwesome";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.563rem;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+}
+ul li:nth-child(1)::before{
+    content: "\f09a";
+    color: #3b5998;
+    top: 0.063rem;
+    width: 100%;
+    /* border-bottom: 2px solid #3b5998; */
+}
+ul li:nth-child(2)::before{
+    content: "\f099";
+    color: #1da1f2;
+    top: 0.063rem;
+    width: 100%;
+    /* border-bottom: 2px solid #1da1f2; */
+}
+ul li:nth-child(3)::before{
+    content: "\f16d";
+    background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    top: 0.063rem;
+    /* -webkit-background-clip: text; */
+    -webkit-text-fill-color: transparent;
+    width: 100%;
+    /* border-bottom: 2px solid #dc2743; */
+}
+ul li:nth-child(4)::before{
+    content: "\f167";
+    color: #ff0000;
+    top: 0.063rem;
+    width: 100%;
+    /* border-bottom: 2px solid #ff0000; */
+}
+ul li:hover::before{
+    height: 100%;
+}
+.p-primary{
+    margin-top: 2.625rem;
+}
+.social-link{
+    width: 11.063rem;
+    height: 3.188rem;
+}
+.paragraps{
+    line-height: 1.844rem;
+    font-size: 1.5rem;
+    padding: 0rem 3.125rem 1.875rem 1.25rem ;
+}
+.box{
+    width: 11.063rem;
+    height: 3.188rem;
+    border-radius: 0.438rem;
+    background-color: black;
+    margin-top: 0.688rem;
+}
+
+.play-store {
+    width: 15%;
+}
+.appstore{
+    width:15%;
+}
+
