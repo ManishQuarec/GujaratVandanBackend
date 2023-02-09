@@ -8,7 +8,9 @@ var AddingNewsDetails = new Schema({
     GujCategory: { type: String, required: true  },
     EngCategory: {type: String,required: true},
     Path: { type: String, required: true },
+    VideoPath: { type: String, required: false },
     NewsTittle: { type: String, required: true },
+    Video: {Boolean:false,  required: false},
     News:{ type: String, required: true },
     CreatedDate: {
       type: Date,

@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
+
 const fileUpload = require('express-fileupload');
 
 const app = express();
@@ -11,7 +10,7 @@ app.use(fileUpload());
 app.use(cors());
 const controller = require('./API Controler/Contoller')
 
-const dataBase = require("./MangoDB/Schema/BreakingNews");
+
 
 mongoose.set("strictQuery", true);
 
@@ -32,8 +31,12 @@ app.use(express.json());
 app.use('/call' ,controller)
 
 app.use("/Media", express.static("Media"));
+// console.log(process.env.PORT);
 
 
+app.get("/new", (req, res) => {
+  res.end('Hello World\n');
+})
 // app.post("/data", (req, res) => {
 //   let passed = new dataBase({
 //     SrNo: req.body.srno,

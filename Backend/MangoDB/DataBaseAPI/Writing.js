@@ -130,9 +130,17 @@ const GetCategory = async (req, res, next) => {
 };
 
 const AddNewsDetail = async (req, res, next) => {
+  const Videofiles = req.files.Videofiles;
   const files = req.files.files;
+  // let Videoroute
+  // let videoPath;
+  // let uploadVideoPath ;
   console.log("data1", req.body);
-  // console.log("data2", req.files);
+  console.log("data2", files);
+  console.log("data2", Videofiles);
+
+
+  // // console.log("data2", req.files);
 
   const CreateFolder = async (value) => {
     // console.log("value",value );
@@ -157,6 +165,33 @@ const AddNewsDetail = async (req, res, next) => {
   let month = d.getMonth() + 1;
   let day = d.getDate();
 
+  if (Videofiles !== undefined){
+    if ((await CreateFolder(`./Media/Video/${year}/${month}/${day}`)) == true) {
+
+      let reqPath = path.join(__dirname, "../../");
+
+      let uploadVideoPath =
+        reqPath +
+        "/Media/" +
+        "/Video/" +
+        `/${year}/` +
+        `/${month}/` +
+        `/${day}/` +
+        `${req.files.Videofiles.name}`;
+
+      let Videoroute =
+        "Media/" +
+        "/Video/" +
+        `/${year}/` +
+        `/${month}/` +
+        `/${day}/` +
+        `${req.files.Videofiles.name}`;
+
+
+    }
+
+  }
+
   if ((await CreateFolder(`./Media/${year}/${month}/${day}`)) == true) {
     try {
       let reqPath = path.join(__dirname, "../../");
@@ -175,6 +210,10 @@ const AddNewsDetail = async (req, res, next) => {
         `/${month}/` +
         `/${day}/` +
         `${req.files.files.name}`;
+
+
+      
+
 
       let data = await AddingCategorys.find({
         "Category.EngCategory": req.body.Category,
