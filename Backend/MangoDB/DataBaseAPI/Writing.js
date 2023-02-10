@@ -113,13 +113,18 @@ const AddingNewsPaper = async (req, res, next) => {
 };
 
 const AddingCategory = (req, res, next) => {
-  let passed = new AddingCategorys({
-    Category: {
-      GujCategory: req.body.GujInput,
-      EngCategory: req.body.EngInput,
-    },
-  });
-  passed.save();
+  try {
+    let passed = new AddingCategorys({
+      Category: {
+        GujCategory: req.body.GujInput,
+        EngCategory: req.body.EngInput,
+      },
+    });
+    passed.save();
+    res.status(200).json({ message: "Success" });
+  } catch (err) {
+    res.status(400).json({ message: "failed" });
+  }
 };
 
 const GetCategory = async (req, res, next) => {
@@ -138,7 +143,6 @@ const AddNewsDetail = async (req, res, next) => {
   console.log("data1", req.body);
   console.log("data2", files);
   console.log("data2", Videofiles);
-
 
   // // console.log("data2", req.files);
 
@@ -165,9 +169,8 @@ const AddNewsDetail = async (req, res, next) => {
   let month = d.getMonth() + 1;
   let day = d.getDate();
 
-  if (Videofiles !== undefined){
+  if (Videofiles !== undefined) {
     if ((await CreateFolder(`./Media/Video/${year}/${month}/${day}`)) == true) {
-
       let reqPath = path.join(__dirname, "../../");
 
       let uploadVideoPath =
@@ -186,10 +189,7 @@ const AddNewsDetail = async (req, res, next) => {
         `/${month}/` +
         `/${day}/` +
         `${req.files.Videofiles.name}`;
-
-
     }
-
   }
 
   if ((await CreateFolder(`./Media/${year}/${month}/${day}`)) == true) {
@@ -211,17 +211,9 @@ const AddNewsDetail = async (req, res, next) => {
         `/${day}/` +
         `${req.files.files.name}`;
 
-
-      
-
-
       let data = await AddingCategorys.find({
         "Category.EngCategory": req.body.Category,
       });
-
-      
-
-      
 
       let passed = new AddingNewsDetail({
         EngCategory: req.body.Category,
@@ -245,6 +237,22 @@ const AddNewsDetail = async (req, res, next) => {
   }
 };
 
+const DeleteCategory = async (req, res, next) => {
+  try {
+    let data = await AddingCategorys.findOneAndDelete({
+      "Category.EngCategory": req.body.EngInput,
+    });
+    if(data == "null"){
+
+      res.status(400).json({message:"No Data Found"})
+      next();
+    }
+    res.status(200).json({ message: "Success" });
+  } catch (err) {
+    res.status(400).json({ message: "failed" });
+  }
+};
+
 module.exports = {
   AddingNews,
   DeleteBreakingNews,
@@ -252,4 +260,5 @@ module.exports = {
   AddingCategory,
   GetCategory,
   AddNewsDetail,
+  DeleteCategory,
 };
