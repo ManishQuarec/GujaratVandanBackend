@@ -73,14 +73,14 @@ const newsPaper = (req, res, next) => {
 const downloads =async (req, res, next) => {
   console.log("data");
   await res.download("new.pdf")
-  // AddingNews.find()
-  //   .then((response) => {
-  //     res.json({ response });
-  //   })
-  //   .catch((error) => {
-  //     console.log("error", error);
-  //     res.json({ error });
-  //   });
+  AddingNews.find()
+    .then((response) => {
+      res.json({ response });
+    })
+    .catch((error) => {
+      console.log("error", error);
+      res.json({ error });
+    });
 };
 
 module.exports = {
