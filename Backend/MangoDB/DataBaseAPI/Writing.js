@@ -79,9 +79,9 @@ const AddingNewsPaper = async (req, res, next) => {
 
     let uploadPath =
       reqPath +
-      "/NewsPaperPDF/" +
-      `/${req.body.year}/` +
-      `/${req.body.month}/` +
+      "NewsPaperPDF/" +
+      `${req.body.year}/` +
+      `${req.body.month}/` +
       `${fileName + ".pdf"}`;
 
     const ft = await AddingNewsPapers.find({ NewsPaperDate: fileName });
