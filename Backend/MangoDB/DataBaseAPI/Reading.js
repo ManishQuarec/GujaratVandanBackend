@@ -1,6 +1,6 @@
 const BreakingNews = require("../Schema/BreakingNews");
 const AddingNewsDetail = require("../Schema/AddingNewsDetails");
-const AddingNews = require("../Schema/AddingNews");
+const AddingNewsPapers = require("../Schema/AddingNews");
 
 //Find All Breaking News
 
@@ -32,6 +32,8 @@ const allNewsData = (req, res, next) => {
 
 const allNewsDataId = (req, res, next) => {
   console.log(req.body);
+ 
+
   AddingNewsDetail.find({ _id: req.body.data })
     .then((response) => {
       // next
@@ -45,7 +47,7 @@ const allNewsDataId = (req, res, next) => {
 };
 
 const allNews = (req, res, next) => {
-  console.log(req.body.data);
+  console.log(req.body);
   AddingNewsDetail.find( )
     .then((response) => {
       // next
@@ -60,7 +62,11 @@ const allNews = (req, res, next) => {
 
 const newsPaper = (req, res, next) => {
   // console.log(req);
-  AddingNews.find()
+  // const drt = AddingNewsPapers.getLastInsertedDocument.find();
+  // console.log(drt);
+
+
+  AddingNewsPapers.find()
     .then((response) => {
       res.json({ response });
     })
@@ -71,16 +77,9 @@ const newsPaper = (req, res, next) => {
 };
 
 const downloads =async (req, res, next) => {
-  console.log("data");
-  await res.download("new.pdf")
-  AddingNews.find()
-    .then((response) => {
-      res.json({ response });
-    })
-    .catch((error) => {
-      console.log("error", error);
-      res.json({ error });
-    });
+  console.log(req.body.url);
+  await res.download(req.body.url)
+
 };
 
 module.exports = {
