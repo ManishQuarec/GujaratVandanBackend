@@ -76,6 +76,11 @@ const AddingNewsPaper = async (req, res, next) => {
     const file = req.files.files;
     let reqPath = path.join(__dirname, "../../");
     console.log();
+    let uploadPath2 =
+      "NewsPaperPDF/" +
+      `${req.body.year}/` +
+      `${req.body.month}/` +
+      `${fileName + ".pdf"}`;
 
     let uploadPath =
       reqPath +
@@ -92,7 +97,7 @@ const AddingNewsPaper = async (req, res, next) => {
     } else {
       let passed = new AddingNewsPapers({
         // SrNo: req.body.srno,
-        Path: uploadPath,
+        Path: uploadPath2,
         NewsPaperDate: fileName,
       });
       passed.save();
@@ -232,12 +237,9 @@ const AddNewsDetail = async (req, res, next) => {
           console.log("passed");
           res.status(200).json({ message: "Successfully" });
         }
-      })
-
-
+      });
     } catch {
       res.status(400).json({ message: "Failed to Store News" });
-
     }
   }
 };
@@ -247,14 +249,35 @@ const DeleteCategory = async (req, res, next) => {
     let data = await AddingCategorys.findOneAndDelete({
       "Category.EngCategory": req.body.EngInput,
     });
-    if(data == "null"){
-
-      res.status(400).json({message:"No Data Found"})
+    if (data == "null") {
+      res.status(400).json({ message: "No Data Found" });
+      
       next();
+    } else {
+      res.status(200).json({ message: "Success" });
     }
-    res.status(200).json({ message: "Success" });
   } catch (err) {
-    res.status(400).json({ message: "failed" });
+    
+    res.status(400).json({ message: "failed", errdata: err })
+  }
+};
+
+const DeleteNewsPaper = async (req, res, next) => {
+  // console.log("datra",req.body.Date);
+
+  try {
+    let data = await AddingNewsPapers.findOneAndDelete({
+      NewsPaperDate: req.body.Date,
+    });
+    if (data == null) {
+      await res.status(404).json({ message: "No Data Found" });
+      
+      next();
+    } else {
+      res.status(200).json({ message: "Success" });
+    }
+  } catch (err) {
+    res.status(400).json({ message: "failed", errdata: err });
   }
 };
 
@@ -266,4 +289,5 @@ module.exports = {
   GetCategory,
   AddNewsDetail,
   DeleteCategory,
+  DeleteNewsPaper,
 };

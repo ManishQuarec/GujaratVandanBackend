@@ -22,6 +22,6 @@ router.get('/newsPaper', Reading.newsPaper);
 router.post('/downloads', Reading.downloads);
 router.post('/allNewsDataId', Reading.allNewsDataId);
 router.post('/DeleteCategory', Writing.DeleteCategory);
-
+router.post('/DeleteNewsPaper', Writing.DeleteNewsPaper);
 
 module.exports = router;
