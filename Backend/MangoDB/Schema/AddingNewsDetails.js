@@ -10,6 +10,7 @@ var AddingNewsDetails = new Schema({
     Path: { type: String, required: true },
     // VideoPath: { type: String, required: false },
     NewsTittle: { type: String, required: true },
+    NewsSubTittle: { type: String, required: true },
     // Video: {Boolean:false,  required: false},
     News:{ type: String, required: true },
     CreatedDate: {
