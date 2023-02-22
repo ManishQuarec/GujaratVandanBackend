@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var AddingCategory = new Schema({
   Id: ObjectId,
-  Category: { GujCategory : String , EngCategory: String},
+  Category: { GujCategory : String , EngCategory: String, Colored:String},
 //   SubCategory: [{ SubCategory: String }],
 });
 

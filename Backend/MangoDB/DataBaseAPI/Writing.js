@@ -123,7 +123,8 @@ const AddingCategory = (req, res, next) => {
       Category: {
         GujCategory: req.body.GujInput,
         EngCategory: req.body.EngInput,
-        
+        Colored:req.body.colored
+
       },
     });
     passed.save();
@@ -224,6 +225,7 @@ const AddNewsDetail = async (req, res, next) => {
       let passed = new AddingNewsDetail({
         EngCategory: req.body.Category,
         GujCategory: data[0].Category.GujCategory,
+        Colored:data[0].Category.Colored,
         Path: route,
         NewsTittle: req.body.NewsTittle,
         NewsSubTittle: req.body.NewsSubTittle,
