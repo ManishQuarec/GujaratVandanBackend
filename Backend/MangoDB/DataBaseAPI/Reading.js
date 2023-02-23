@@ -47,7 +47,7 @@ const allNewsDataId = (req, res, next) => {
 };
 
 const allNews = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req);
   AddingNewsDetail.find( )
     .then((response) => {
       // next
