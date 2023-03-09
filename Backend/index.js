@@ -26,6 +26,21 @@ db.once("open", () => {
 });
 
 
+app.get("/need", (req, res, next) => {
+  const filePath = path.resolve(__dirname, "./build", "index.html");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+
+    data = data
+      .replace(/__TITLE__/g, "Home Page")
+      .replace(/__DESCRIPTION__/g, "Home page description.");
+
+    res.send(data)
+    next();
+  });
+});
 
 app.use(express.json());
 app.use('/call' ,controller)
