@@ -1,0 +1,127 @@
+.breakingnews-line {
+  height: 2.063rem;
+  margin-top: 3%;
+  display: flex;
+  align-items: center;
+  display: none;
+}
+.breaking-news {
+  flex-basis: 15%;
+  height: 100%;
+  background-color: #e20000;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 0.3rem 0 0 0;
+  color: #fff;
+}
+marquee {
+  cursor: pointer;
+}
+.news {
+  height: 100%;
+  width: 100%;
+  flex-basis: 85%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+.news :nth-child(2) {
+  margin-left: 15.625rem;
+}
+.news :nth-child(3) {
+  margin-left: 22.5rem;
+}
+@media only screen and (max-width: 1100px) {
+  .breakingnews-line {
+    margin-top: 0.5%;
+  }
+}
+@media all and (max-width: 1230px) {
+  .breaking-news {
+    flex-basis: 15%;
+    height: 100%;
+    background-color: #e20000;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.5rem 0 0 0;
+    color: #fff;
+  }
+}
+@media only screen and (max-width: 1042px) {
+  .breaking-news {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+@media all and (max-width: 800px) {
+  .breaking-news {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+@media all and (max-width: 701px) {
+  .breaking-news {
+    font-size: 10px;
+    text-align: center;
+    height: 55%;
+    margin: 0;
+    padding: 3px 0px 0px 0px;
+  }
+  .news {
+    height: 55%;
+    width: 100%;
+    flex-basis: 85%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+  }
+  .breakingnews-line {
+    margin-top: 5.6%;
+    position: fixed;
+    z-index: 99;
+  }
+}
+
+/* @media all and (max-width: 700px) {
+  .breakingnews-line {
+    margin-top: 5.6%;
+    position: fixed;
+    z-index: 99;
+  }
+} */
+
+@media all and (max-width: 600px) {
+  .breakingnews-line {
+    margin-top: 6.5%;
+    position: fixed;
+    z-index: 99;
+    /* display: block; */
+  }
+}
+@media all and (max-width: 590px) {
+  .breaking-news {
+    flex-basis: 21%;
+  }
+}
+@media all and (max-width: 450px) {
+  .breaking-news {
+    flex-basis: 28%;
+  }
+}
+@media all and (max-width: 400px) {
+  .breakingnews-line {
+    margin-top: 8%;
+  }
+}
+@media all and (max-width: 360px) {
+  .breakingnews-line {
+    margin-top: 11%;
+  }
+  .breaking-news {
+    flex-basis: 36%;
+  }
+}

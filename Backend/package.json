@@ -6,8 +6,11 @@
     "dotenv-webpack": "^8.0.1",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "fs": "^0.0.1-security",
     "fs-extra": "^11.1.0",
     "mongoose": "^6.8.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "rendertron-middleware": "^0.1.5"
   }
 }

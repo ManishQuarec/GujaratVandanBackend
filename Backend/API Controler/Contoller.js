@@ -7,7 +7,7 @@ const router = express.Router();
 const Reading = require("../MangoDB/DataBaseAPI/Reading");
 const Writing = require ("../MangoDB/DataBaseAPI/Writing")
 
-
+router.get("/call/", Reading.data);
 router.get("/allBreakingNews", Reading.allBreakingNews);
 router.post('/AddingNews', Writing.AddingNews);
 router.post('/DeleteBreakingNews', Writing.DeleteBreakingNews);
