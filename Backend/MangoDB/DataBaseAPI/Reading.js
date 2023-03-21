@@ -38,7 +38,7 @@ const allNewsData = (req, res, next) => {
 
 const allNewsDataId = (req, res, next) => {
   console.log(req.body);
- 
+
 
   AddingNewsDetail.find({ _id: req.body.data })
     .then((response) => {
@@ -51,25 +51,36 @@ const allNewsDataId = (req, res, next) => {
       res.json({ error });
     });
 
-    
+
 };
 
 
-const data = (req,res,next) => {
+const data = (req, res, next) => {
+  const filePath = path.resolve(__dirname, "../../../../../GujaratVandan Frontend/GujaratVandan/frontend/build", "index.html");
 
-  const filePath = path.resolve(__dirname, "./frontend/public", "index.html");
+  // const filePath = path.resolve(__dirname, "../../../../var/www/gujaratvandan.com", "index.html");
+  console.log("newpath", filePath);
+
+
   fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      return console.log(err);
-    }
 
-    data = data
-      .replace(/__TITLE__/g, "Home Page")
-      .replace(/__DESCRIPTION__/g, "Home page description.");
+    datas = data
+      .replace(/mGujarati News, News in Gujarati – ગુજરાત સમાચાર | ગુજરાત વંદન- Gujarat Vandan/g, "Home Page")
+      .replace(/mGujarati News Samachar - Find all Gujarati News and Samachar, News in Gujarati, Gujarat News, Gujarati News Headlines and Daily Breaking News, Gujarati News Paper in Gujaratvandan.com/g, "Home page description...");
 
-    res.send(data)
-  });
-  app.use(express.static(path.resolve(__dirname, "./frontend/public")))
+      fs.writeFileSync(filePath, datas);
+    console.log("datas", datas);
+    // response.send(datas)
+    res.send(datas)
+  })
+
+  //   data = data
+  //     .replace(/__TITLE__/g, "Home Page")
+  //     .replace(/__DESCRIPTION__/g, "Home page description.");
+
+  //   res.send(data)
+  // });
+  // app.use(express.static(path.resolve(__dirname, "./frontend/public")))
 }
 
 

@@ -33,13 +33,38 @@ db.once("open", () => {
 app.use(
   rendertron.makeMiddleware({
     proxyUrl: 'http://my-rendertron-instance/render',
-    injectShadyDom:true,
+    injectShadyDom: true,
   })
 );
 
 
-app.get('/*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+app.get('/need', (request, response) => {
+
+
+  const filePath = path.resolve(__dirname, "../../../GujaratVandan Frontend", "index.html");
+  const filePath2 = path.resolve(__dirname, "../../../GujaratVandan Frontend/GujaratVandan/frontend/build", "index.html");
+
+  // const filePath = path.resolve(__dirname, "../../../../var/www/gujaratvandan.com", "index.html");
+
+
+  console.log(filePath);
+
+
+  fs.readFile(filePath, "utf8", async (err, data) => {
+
+    
+    console.log(filePath2);
+    fs.writeFileSync(filePath2, data)
+
+    console.log("data written");
+
+    
+  });
+
+
+  response.status(200)
+  // response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+
 });
 
 
@@ -59,6 +84,32 @@ app.get('/*', (request, response) => {
 //   });
 // });
 
+
+// app.get('/*', (req, res) => {
+//   // Read the contents of the HTML file
+//   const html = fs.readFileSync('./index.html', 'utf8');
+
+//   // Modify the HTML as needed based on the requested URL path
+//   const modifiedHtml = modifyHtml(html, req.url);
+
+//   console.log(modifiedHtml);
+//   // Send the modified HTML as a response to the client
+//   res.send(modifiedHtml);
+// });
+
+// function modifyHtml(html, url) {
+//   // Modify the HTML content based on the requested URL path
+//   // For example, replace a placeholder with dynamic content
+//   const dynamicContent = getDynamicContent(url);
+//   const modifiedHtml = html.replace('{dynamic-content}', dynamicContent);
+//   return modifiedHtml;
+// }
+
+// function getDynamicContent(url) {
+//   // Get dynamic content based on the requested URL path
+//   // For example, query a database or generate content based on user input
+//   return `<h1>${url}</h1><p>This is the dynamic content for ${url}</p>`;
+// }
 
 
 app.use('/call', controller)
