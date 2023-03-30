@@ -38,31 +38,33 @@ app.use(
 );
 
 
-app.get('/need', (request, response) => {
+app.get('/needss', (request, response) => {
 
-
-  const filePath = path.resolve(__dirname, "../../../GujaratVandan Frontend", "index.html");
-  const filePath2 = path.resolve(__dirname, "../../../GujaratVandan Frontend/GujaratVandan/frontend/build", "index.html");
+  const filePath = path.resolve(__dirname, "../", "index.html");
+  // const filePath = path.resolve(__dirname, "../../../GujaratVandan Frontend", "index.html");
+  // const filePath2 = path.resolve(__dirname, "../../../GujaratVandan Frontend/GujaratVandan/frontend/build", "index.html");
 
   // const filePath = path.resolve(__dirname, "../../../../var/www/gujaratvandan.com", "index.html");
 
 
-  console.log(filePath);
+  console.log("filePath", filePath);
+
+
 
 
   fs.readFile(filePath, "utf8", async (err, data) => {
 
-    
+    const filePath2 = path.resolve(__dirname, "../../../../var/www/gujaratvandan.com", "index.html");
     console.log(filePath2);
     fs.writeFileSync(filePath2, data)
 
-    console.log("data written");
+    console.log(data);
+    response.send(data)
 
-    
   });
 
 
-  response.status(200)
+  // response.status(200)
   // response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
 
 });

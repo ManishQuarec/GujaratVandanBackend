@@ -65,23 +65,24 @@ const data = (req, res, next) => {
   fs.readFile(filePath, "utf8", (err, data) => {
 
     datas = data
-      .replace(/mGujarati News, News in Gujarati – ગુજરાત સમાચાર | ગુજરાત વંદન- Gujarat Vandan/g, "Home Page")
-      .replace(/mGujarati News Samachar - Find all Gujarati News and Samachar, News in Gujarati, Gujarat News, Gujarati News Headlines and Daily Breaking News, Gujarati News Paper in Gujaratvandan.com/g, "Home page description...");
+      .replace(/__TITLE__/g, "મોદી સરનેમ મામલે કેસનો ચુકાદો")
+      .replace(/__DESCRIPTION__/g, "રાહુલ ગાંધી દોષિત, બે વર્ષની સજા, જામીન મળ્યા")
+      // .replace(/'"https:/ / secretseventeen.com / Media / icon.png"'/g, `"https://secretseventeen.com/Media//2023//3//23/rahulgandhi23032023.jpg"`)
 
-      fs.writeFileSync(filePath, datas);
+        fs.writeFileSync(filePath, datas);
     console.log("datas", datas);
     // response.send(datas)
     res.send(datas)
   })
 
-  //   data = data
-  //     .replace(/__TITLE__/g, "Home Page")
-  //     .replace(/__DESCRIPTION__/g, "Home page description.");
+  // data = data
+  //   .replace(/__TITLE__/g, "Home Page")
+  //   .replace(/__DESCRIPTION__/g, "Home page description.");
 
-  //   res.send(data)
-  // });
-  // app.use(express.static(path.resolve(__dirname, "./frontend/public")))
+  // res.send(data)
 }
+// app.use(express.static(path.resolve(__dirname, "./frontend/public")))
+
 
 
 
@@ -128,5 +129,5 @@ module.exports = {
   newsPaper,
   downloads,
   allNewsDataId,
-  data
-};
+  data,
+}

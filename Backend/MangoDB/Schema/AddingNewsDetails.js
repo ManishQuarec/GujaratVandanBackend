@@ -15,8 +15,7 @@ var AddingNewsDetails = new Schema({
     // Video: {Boolean:false,  required: false},
     News:{ type: String, required: true },
     CreatedDate: {
-      type: Date,
-      default: Date.now,
+      type: String,
     },
   });
 

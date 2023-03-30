@@ -2,6 +2,7 @@ const BreakingNews = require("../Schema/BreakingNews");
 const AddingNewsPapers = require("../Schema/AddingNews");
 const AddingCategorys = require("../Schema/Category");
 const AddingNewsDetail = require("../Schema/AddingNewsDetails");
+const { ObjectId } = require('mongodb');
 
 const path = require("path");
 const fs = require("fs-extra");
@@ -123,7 +124,7 @@ const AddingCategory = (req, res, next) => {
       Category: {
         GujCategory: req.body.GujInput,
         EngCategory: req.body.EngInput,
-        Colored:req.body.colored
+        Colored: req.body.colored
 
       },
     });
@@ -222,14 +223,19 @@ const AddNewsDetail = async (req, res, next) => {
         "Category.EngCategory": req.body.Category,
       });
 
+      const now = new Date(Date.now());
+      const options = { timeZone: 'Asia/Kolkata' };
+      const istTime = now.toLocaleString('en-US', options);
+
       let passed = new AddingNewsDetail({
         EngCategory: req.body.Category,
         GujCategory: data[0].Category.GujCategory,
-        Colored:data[0].Category.Colored,
+        Colored: data[0].Category.Colored,
         Path: route,
         NewsTittle: req.body.NewsTittle,
         NewsSubTittle: req.body.NewsSubTittle,
         News: req.body.News,
+        CreatedDate: istTime,
       });
       passed.save();
       console.log(passed);
@@ -255,13 +261,13 @@ const DeleteCategory = async (req, res, next) => {
     });
     if (data == "null") {
       res.status(400).json({ message: "No Data Found" });
-      
+
       next();
     } else {
       res.status(200).json({ message: "Success" });
     }
   } catch (err) {
-    
+
     res.status(400).json({ message: "failed", errdata: err })
   }
 };
@@ -275,7 +281,7 @@ const DeleteNewsPaper = async (req, res, next) => {
     });
     if (data == null) {
       await res.status(404).json({ message: "No Data Found" });
-      
+
       next();
     } else {
       res.status(200).json({ message: "Success" });
@@ -284,6 +290,107 @@ const DeleteNewsPaper = async (req, res, next) => {
     res.status(400).json({ message: "failed", errdata: err });
   }
 };
+
+const DeleteNews = async (req, res, next) => {
+
+  console.log(req.body.id);
+
+  try {
+    let data = await AddingNewsDetail.findOneAndDelete({
+      _id: req.body.id,
+    });
+    if (data == null) {
+      await res.status(404).json({ message: "No Data Found" });
+
+
+    } else {
+      res.status(200).json({ message: "Success" });
+    }
+  } catch (err) {
+    res.status(400).json({ message: "failed", errdata: err });
+  }
+  // res.send("data")
+};
+
+
+
+
+const findData = async (req, res, next) => {
+
+  console.log(req.files.files.name);
+
+
+  try {
+    const files = req.files.files;
+
+    const d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let day = d.getDate();
+
+    let reqPath = path.join(__dirname, "../../");
+
+    let uploadPath =
+      reqPath +
+      "/Media/" +
+      `/${year}/` +
+      `/${month}/` +
+      `/${day}/` +
+      `${req.files.files.name}`;
+
+    let route =
+      "Media/" +
+      `/${year}/` +
+      `/${month}/` +
+      `/${day}/` +
+      `${req.files.files.name}`;
+
+
+    let data = await AddingCategorys.find({
+      "Category.EngCategory": req.body.Category,
+    });
+    console.log(data);
+    const updatedData = await AddingNewsDetail.findOneAndUpdate(
+      { _id: ObjectId(`${req.body.id}`) },
+      {
+        $set: {
+          GujCategory: data[0].Category.GujCategory,
+          EngCategory: req.body.Category,
+          Path: route,
+          Colored: data[0].Category.Colored,
+          NewsTittle: req.body.NewsTittle,
+          NewsSubTittle: req.body.NewsSubTittle,
+          News: req.body.News,
+        },
+      },
+      { new: true } // to return the updated document instead of the old one
+    );
+
+
+    await files.mv(uploadPath, (err) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      } else {
+        console.log("passed");
+        res.status(200).json({ message: "Successfully" });
+      }
+    });
+
+    console.log(updatedData);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
+
+
+
+
+
+
 
 module.exports = {
   AddingNews,
@@ -294,4 +401,6 @@ module.exports = {
   AddNewsDetail,
   DeleteCategory,
   DeleteNewsPaper,
+  DeleteNews,
+  findData
 };
