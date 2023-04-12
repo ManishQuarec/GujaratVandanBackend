@@ -8,6 +8,7 @@ const Reading = require("../MangoDB/DataBaseAPI/Reading");
 const Writing = require ("../MangoDB/DataBaseAPI/Writing")
 
 router.get("/fullnews", Reading.data);
+router.post("/AddVideoData", Writing.AddVideoData);
 router.post("/DeleteNews", Writing.DeleteNews);
 router.get("/allBreakingNews", Reading.allBreakingNews);
 router.post('/AddingNews', Writing.AddingNews);

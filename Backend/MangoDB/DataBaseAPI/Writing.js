@@ -2,10 +2,14 @@ const BreakingNews = require("../Schema/BreakingNews");
 const AddingNewsPapers = require("../Schema/AddingNews");
 const AddingCategorys = require("../Schema/Category");
 const AddingNewsDetail = require("../Schema/AddingNewsDetails");
+const Videodbs = require("../Schema/VIdeo")
+
+
 const { ObjectId } = require('mongodb');
 
 const path = require("path");
 const fs = require("fs-extra");
+const { log } = require("console");
 
 const AddingNews = async (req, res, next) => {
   const ft = await BreakingNews.find({ SrNo: req.body.srno });
@@ -53,6 +57,9 @@ const DeleteBreakingNews = async (req, res, next) => {
 };
 
 const AddingNewsPaper = async (req, res, next) => {
+
+  // console.log("Day",req.body.Day);
+
   const CreateFolder = (value) => {
     const path = value;
 
@@ -99,6 +106,7 @@ const AddingNewsPaper = async (req, res, next) => {
       let passed = new AddingNewsPapers({
         // SrNo: req.body.srno,
         Path: uploadPath2,
+        Day: req.body.Day,
         NewsPaperDate: fileName,
       });
       passed.save();
@@ -291,6 +299,8 @@ const DeleteNewsPaper = async (req, res, next) => {
   }
 };
 
+
+
 const DeleteNews = async (req, res, next) => {
 
   console.log(req.body.id);
@@ -311,6 +321,8 @@ const DeleteNews = async (req, res, next) => {
   }
   // res.send("data")
 };
+
+
 
 
 
@@ -376,6 +388,8 @@ const findData = async (req, res, next) => {
       }
     });
 
+
+
     console.log(updatedData);
   } catch (err) {
     console.log(err);
@@ -383,6 +397,133 @@ const findData = async (req, res, next) => {
 };
 
 
+
+
+// -------------------------------------------------------------
+
+const AddVideoData = async (req, res, next) => {
+
+ 
+
+
+  const d = new Date();
+  let year = d.getFullYear();
+  let month = d.getMonth() + 1;
+  let day = d.getDate();
+
+
+
+  console.log(req.body);
+  console.log(req.files.files);
+  console.log(req.files.filed);
+
+  const CreateFolder = async (value) => {
+    const path = value;
+
+    await fs.access(path, (error) => {
+      if (error) {
+        fs.mkdir(path, { recursive: true }, (error) => {
+          if (error) {
+            console.log(error);
+            return false;
+          }
+        });
+      }
+    });
+    return true;
+  };
+
+
+
+  if (await CreateFolder(`./Video/${year}/${month}/${day}`) == true) {
+    const Videofileimage = req.files.filed;
+    const name = req.files.filed.name
+    let reqPath = path.join(__dirname, "../../");
+    console.log();
+    let uploadPath2 =
+      "Video/" +
+      `/${year}/` +
+      `/${month}/` + `/${day}/` +
+      `${req.files.filed.name}`;
+
+    let uploadPath =
+      reqPath +
+      "Video/" +
+      `/${year}/` +
+      `/${month}/` + `/${day}/` +
+      `${req.files.filed.name}`;
+
+    
+    if (await CreateFolder(`./Video/Videoimages/${year}/${month}/${day}`) == true) {
+      const fileimage = req.files.files;
+
+      
+      let reqPath = path.join(__dirname, "../../");
+      console.log();
+      let uploadPathImage2 =
+        "Video/Videoimages/" +
+        `${year}/` +
+        `${month}/` + `${day}/` +
+        `${req.files.files.name}`;
+
+      let uploadPathImage =
+        reqPath +
+        "Video/Videoimages/" +
+        `${year}/` +
+        `${month}/` + `${day}/` +
+        `${req.files.files.name}`;
+
+      let data = await AddingCategorys.find({
+        "Category.EngCategory": req.body.Category,
+      });
+    
+      const now = new Date(Date.now());
+      const options = { timeZone: 'Asia/Kolkata' };
+      const istTime = now.toLocaleString('en-US', options);
+
+      let passed = new Videodbs({
+        GujCategory: data[0].Category.GujCategory,
+        EngCategory: req.body.Category,
+        ImagePath: uploadPathImage2,
+        Colored: data[0].Category.Colored,
+        VideoPath: uploadPath2,
+        NewsTittle: req.body.NewsTittle,
+        NewsSubTittle: req.body.NewsSubTittle,
+        CreatedDate: istTime
+      });
+      passed.save();
+
+
+
+      Videofileimage.mv(uploadPath, (err) => {
+        if (err) {
+          res.status(400).json({ message: err });
+          console.log(err);
+        }
+      });
+
+      fileimage.mv(uploadPathImage, (err) => {
+        if (err) {
+          res.status(400).json({ message: err });
+          console.log(err);
+        }
+      });
+
+
+
+      res.status(200).json({ message: "Successfully" });
+
+    }
+
+
+
+  } else {
+    res
+      .status(400)
+      .json({ message: "We Have Encountered with Creating Folder" });
+  }
+
+}
 
 
 
@@ -402,5 +543,6 @@ module.exports = {
   DeleteCategory,
   DeleteNewsPaper,
   DeleteNews,
-  findData
+  findData,
+  AddVideoData,
 };

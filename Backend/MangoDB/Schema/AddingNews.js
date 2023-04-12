@@ -7,6 +7,7 @@ var AddingNews = new Schema({
   SrNo: { type: Number,  },
   Path: { type: String, required: true },
   NewsPaperDate: { type: String, required: true },
+  Day:{type: String, required: true},
   CreatedDate: {
     type: Date,
     default: Date.now,
