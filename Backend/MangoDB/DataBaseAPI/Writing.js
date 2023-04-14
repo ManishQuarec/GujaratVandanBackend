@@ -527,7 +527,12 @@ const AddVideoData = async (req, res, next) => {
 
 
 
+const getAllVideoData = async (req, res, next) => {
 
+  const ft = await Videodbs.find();
+  res.status(200).json(ft);
+
+}
 
 
 
@@ -545,4 +550,5 @@ module.exports = {
   DeleteNews,
   findData,
   AddVideoData,
+  getAllVideoData
 };
