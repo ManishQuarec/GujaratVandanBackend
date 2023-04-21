@@ -403,7 +403,7 @@ const findData = async (req, res, next) => {
 
 const AddVideoData = async (req, res, next) => {
 
- 
+
 
 
   const d = new Date();
@@ -453,11 +453,11 @@ const AddVideoData = async (req, res, next) => {
       `/${month}/` + `/${day}/` +
       `${req.files.filed.name}`;
 
-    
+
     if (await CreateFolder(`./Video/Videoimages/${year}/${month}/${day}`) == true) {
       const fileimage = req.files.files;
 
-      
+
       let reqPath = path.join(__dirname, "../../");
       console.log();
       let uploadPathImage2 =
@@ -476,7 +476,7 @@ const AddVideoData = async (req, res, next) => {
       let data = await AddingCategorys.find({
         "Category.EngCategory": req.body.Category,
       });
-    
+
       const now = new Date(Date.now());
       const options = { timeZone: 'Asia/Kolkata' };
       const istTime = now.toLocaleString('en-US', options);
@@ -499,19 +499,25 @@ const AddVideoData = async (req, res, next) => {
         if (err) {
           res.status(400).json({ message: err });
           console.log(err);
+        } else {
+
+          fileimage.mv(uploadPathImage, (err) => {
+            if (err) {
+              res.status(400).json({ message: err });
+              console.log(err);
+            } else {
+              res.status(200).json({ message: "Successfully" });
+            }
+          });
+
         }
       });
 
-      fileimage.mv(uploadPathImage, (err) => {
-        if (err) {
-          res.status(400).json({ message: err });
-          console.log(err);
-        }
-      });
 
 
 
-      res.status(200).json({ message: "Successfully" });
+
+
 
     }
 
