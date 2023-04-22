@@ -14,6 +14,9 @@ app.use(cors());
 const controller = require('./API Controler/Contoller')
 app.use(express.json());
 
+app.use(express.static('public'));
+app.use('/Video', express.static('images'));
+app.use('/Video', express.static('video'));
 
 
 mongoose.set("strictQuery", true);
